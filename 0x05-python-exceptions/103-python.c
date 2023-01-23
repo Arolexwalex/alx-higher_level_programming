@@ -23,7 +23,7 @@ void print_python_bytes(PyObject *p)
                 return;
         }
         str = ((PyBytesObject *)(p))->ob_sval, b = PyBytes_Size(p);
-        printf(" size: %ldn trying string: %s\n", b, str);
+        printf(" size: %ld\n trying string: %s\n", b, str);
         b >= 10 ? b = 10 : b++;
         printf(" first %ld bytes: ", b);
         for (i = 0; i < b - 1; i++)
@@ -70,7 +70,7 @@ void print_python_list(PyObject *p)
         list = (PyListObject *)p;
         size = PyList_GET_SIZE(p);
         a = list->allocated;
-        printf("[*] Size of the Python List = %ldn[*] Allocated = %li\n", size, a);
+        printf("[*] Size of the Python List = %ld\n[*] Allocated = %li\n", size, a);
         for (i = 0; i < size; i++)
         {
                 t = (list->ob_item[i])->ob_type->tp_name;
