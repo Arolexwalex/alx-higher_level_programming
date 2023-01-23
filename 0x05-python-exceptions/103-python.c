@@ -12,23 +12,23 @@
  */
 void print_python_bytes(PyObject *p)
 {
-size_t b, i;
-char *str;
+        size_t b, i;
+        char *str;
 
-setbuf(stdout, NULL);
-printf([.] bytes object infon);
-if (PyBytes_Check(p) == 0)
-{
-printf( [ERROR] Invalid Bytes Objectn);
-return;
-}
-str = ((PyBytesObject *)(p))->ob_sval, b = PyBytes_Size(p);
-printf( size: %ldn trying string: %sn, b, str);
-b >= 10 ? b = 10 : b++;
-printf( first %ld bytes: , b);
-for (i = 0; i < b - 1; i++)
-printf(%02hhx , str[i]);
-printf(%02hhxn, str[i]);
+        setbuf(stdout, NULL);
+        printf([.] bytes object infon);
+        if (PyBytes_Check(p) == 0)
+        {
+                printf( [ERROR] Invalid Bytes Objectn);
+                return;
+        }
+        str = ((PyBytesObject *)(p))->ob_sval, b = PyBytes_Size(p);
+        printf( size: %ldn trying string: %sn, b, str);
+        b >= 10 ? b = 10 : b++;
+        printf( first %ld bytes: , b);
+        for (i = 0; i < b - 1; i++)
+                printf(%02hhx , str[i]);
+        printf(%02hhxn, str[i]);
 }
 /**
  * print_python_float - print python things
@@ -36,19 +36,19 @@ printf(%02hhxn, str[i]);
  */
 void print_python_float(PyObject *p)
 {
-char *str;
-double f;
+        char *str;
+        double f;
 
-setbuf(stdout, NULL);
-printf([.] float object infon);
-if (PyFloat_Check(p) == 0)
-{
-printf( [ERROR] Invalid Float Objectn);
-return;
-}
-f = ((PyFloatObject *)(p))->ob_fval;
-str = PyOS_double_to_string(f, 'r', 0, Py_DTSF_ADD_DOT_0, NULL);
-printf( value: %sn, str);
+        setbuf(stdout, NULL);
+        printf([.] float object infon);
+        if (PyFloat_Check(p) == 0)
+        {
+                printf( [ERROR] Invalid Float Objectn);
+                return;
+        }
+        f = ((PyFloatObject *)(p))->ob_fval;
+        str = PyOS_double_to_string(f, 'r', 0, Py_DTSF_ADD_DOT_0, NULL);
+        printf( value: %sn, str);
 }
 /**
  * print_python_list - print python things
@@ -56,26 +56,26 @@ printf( value: %sn, str);
  */
 void print_python_list(PyObject *p)
 {
-size_t a, size, i;
-const char *t;
-PyListObject *list;
+        size_t a, size, i;
+        const char *t;
+        PyListObject *list;
 
-setbuf(stdout, NULL);
-printf([*] Python list infon);
-if (PyList_Check(p) == 0)
-{
-printf( [ERROR] Invalid List Objectn);
-return;
-}
-list = (PyListObject *)p;
-size = PyList_GET_SIZE(p);
-a = list->allocated;
-printf([*] Size of the Python List = %ldn[*] Allocated = %lin, size, a);
-for (i = 0; i < size; i++)
-{
-t = (list->ob_item[i])->ob_type->tp_name;
-printf(Element %li: %sn, i, t);
-  !strcmp(t, "bytes") ? print_python_bytes(list->ob_item[i]) : (void)t;
-	!strcmp(t, "float") ? print_python_float(list->ob_item[i]) : (void)t;
-}
+        setbuf(stdout, NULL);
+        printf([*] Python list infon);
+        if (PyList_Check(p) == 0)
+        {
+                printf( [ERROR] Invalid List Objectn);
+                return;
+        }
+        list = (PyListObject *)p;
+        size = PyList_GET_SIZE(p);
+        a = list->allocated;
+        printf([*] Size of the Python List = %ldn[*] Allocated = %lin, size, a);
+        for (i = 0; i < size; i++)
+        {
+                t = (list->ob_item[i])->ob_type->tp_name;
+                printf(Element %li: %sn, i, t);
+                !strcmp(t, "bytes") ? print_python_bytes(list->ob_item[i]) : (void)t;
+		!strcmp(t, "float") ? print_python_float(list->ob_item[i]) : (void)t;
+        }
 }
