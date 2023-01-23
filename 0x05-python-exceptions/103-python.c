@@ -75,5 +75,7 @@ for (i = 0; i < size; i++)
 {
 t = (list->ob_item[i])->ob_type->tp_name;
 printf(Element %li: %sn, i, t);
+  !strcmp(t, "bytes") ? print_python_bytes(list->ob_item[i]) : (void)t;
+	!strcmp(t, "float") ? print_python_float(list->ob_item[i]) : (void)t;
 }
 }
