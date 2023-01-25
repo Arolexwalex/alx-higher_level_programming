@@ -26,9 +26,9 @@ class Square:
             value (int): size of the square.
         """
         if type(value) is not int:
-            raise TypeError(size must be an integer)
+            raise TypeError('size must be an integer')
         elif value < 0:
-            raise ValueError(size must be 0)
+            raise ValueError('size must be >= 0')
         else:
             self.__size = value  #: size of the square
 
@@ -45,7 +45,7 @@ class Square:
         if self.__size != 0:
             for i in range(self.__size):
                 for j in range(self.__size):
-                    print(#, end=)
+                    print('#', end='')
                 print()
         else:
             print()
